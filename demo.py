@@ -527,3 +527,117 @@ objC = C()
 # objC.feature2()
 objC.feature1()
 objC.feature3()
+print("-----------------------------oops (polymorphism - ducktyping)-------------------------")
+
+class pycharm:
+    def execute(self):
+        print("compilling")
+        print("running")
+
+class laptop:
+
+    def code(self,ide):
+        ide.execute()
+
+ide = pycharm()
+lap1 = laptop()
+lap1.code(ide)
+
+print("-----------------------------oops (polymorphism - operator overloading)-------------------------")
+
+
+class employee:
+    def __init__(self,base,hr,md):
+        self.base = base
+        self.hr = hr
+        self.md = md
+    def salary(self):
+        return self.hr+self.md+self.base
+    def __gt__(self, other):
+        if self.salary() > other.salary():
+            return "first employee salary is more"
+        else:
+            return "second employee salary is more"
+
+
+
+
+e1 = employee(5000,700,1100)
+e2 = employee(4500,800,2800)
+
+print(e1>e2)
+
+print("-----------------------------oops (polymorphism - method overloading)-------------------------")
+# not supported by python so we do it using technique
+class A:
+    def add(self,a = None, b = None, c = None):
+        if a != None and b != None and c != None:
+            return  a+b+c
+        elif a!= None and b != None:
+            return a+b
+        else:
+            return a
+
+obj = A()
+print(obj.add(2,3,4))
+
+print("-----------------------------oops (polymorphism - method overriding)-------------------------")
+class A:
+    def show(self):
+        print("in A")
+
+class B(A):
+    def show(self):
+        print("in B")
+
+obj = B()
+obj.show()
+
+
+print("-----------------------------oops (Abstract class and abstract method)-------------------------")
+from abc import  ABC,abstractmethod
+class laptop(ABC):
+    @abstractmethod
+    def process(self):
+        pass
+
+class org(laptop):
+    def work(self):
+        print("its working")
+    def process(self):
+        print("its processing")
+
+l1 = org()
+l1.process()
+l1.work()
+print("-----------------------------iterator-------------------------")
+
+lst = [1,2,45,4,5,6,7]
+
+it = iter(lst)
+print(it.__next__())
+print(it.__next__())
+print(next(it))
+
+# creating your own iterator
+
+class itrtr:
+    def __init__(self):
+        self.num = 10
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.num <= 25:
+            val = self.num
+            self.num += 1
+
+            return val
+        else:
+            raise StopIteration
+
+inst = itrtr()
+
+for i in inst:
+    print(i)
