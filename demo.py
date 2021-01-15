@@ -426,7 +426,7 @@ sum = reduce(get_sum,lst)
 print(sum)
 sum_with_lambda = reduce(lambda x,y : x+y, lst)
 print(sum_with_lambda)
-'''
+
 print("-----------------------------decoraters -------------------------")
 
 def div(a,b):
@@ -641,3 +641,81 @@ inst = itrtr()
 
 for i in inst:
     print(i)
+print("-----------------------------generator-------------------------")
+
+def topTensquare():
+    n = 0;
+    while n <=10:
+        sq = n*n;
+        n += 1
+        yield sq
+
+val = topTensquare()
+for i in val:
+    print(i)
+
+print("-----------------------------Exception handling-------------------------")
+
+
+
+a = 6
+b = 2
+
+try:
+    print(a/b)
+    x = int(input("enter a number : "))
+    print(x)
+except ZeroDivisionError as e:
+    print("cant divide by zero")
+    print(e)
+except ValueError as e:
+    print("invalid input")
+    print(e)
+finally:
+    print("bye bye")
+    print("resource closed")
+
+print("-----------------------------Threading-------------------------")
+from threading import *
+from time import  sleep
+class Hello(Thread):
+    def run(self):
+        for i in range(5):
+            print("Hello")
+            sleep(1)
+
+class Hii(Thread):
+    def run(self):
+        for i in range(5):
+            print("Hii")
+            sleep(1)
+
+
+h1 = Hello()
+h2 = Hii()
+
+
+
+h1.start()
+sleep(0.5)
+h2.start()
+
+h1.join()
+h2.join()
+
+print("bye")
+'''
+print("-----------------------------File Handling-------------------------")
+
+f1 = open("data.txt",'r')
+
+print("******")
+
+f2 = open("newfile",'w')
+
+f2.write("This is a new file")
+f2.close()
+
+f2 = open("newfile",'a')
+for data in f1:
+    print(f2.write(data))
