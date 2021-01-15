@@ -719,3 +719,4 @@ f2.close()
 f2 = open("newfile",'a')
 for data in f1:
     print(f2.write(data))
+
